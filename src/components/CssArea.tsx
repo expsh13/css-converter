@@ -6,8 +6,8 @@ const CssArea: React.FC = () => {
   // cssの取得
   const getCss = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const inputTxt = e.target.value;
-    setCss(inputTxt.replace(/([0-9 .]+px)/g, changeCss));
-    console.log(css);
+    setCss(inputTxt.replace(/([0-9 .]+px)/gi, /([0-9 .]+vw)/g));
+    // console.log(css);
     // setCss(() => e.target.value);
   };
 
