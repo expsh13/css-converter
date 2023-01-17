@@ -9,19 +9,20 @@ const CssArea: React.FC = () => {
   const getCss = (value: string): void => {
     // 入力データ
     let inputData = value;
-    console.log(inputData);
+    // console.log(inputData);
     setConvertCss(inputData);
     // マッチパターン
-    // const pattern = /(?<=\s|:)[0-9 .]+px/gi;
-    const pattern = /(?<=\s|:)[0-9 .]+px/gi;
+    const pattern = /(?<=\s|:)[0-9.]+px/gi;
     // マッチcss
     const matchDatas = inputData.match(pattern);
+    console.log(matchDatas);
     if (matchDatas == null) return;
 
     matchDatas.map((matchData) => {
-      const num = matchData.match(/[0-9 .]+(?=px)/g);
-      console.log("num");
+      const num = matchData.match(/[0-9.]+(?=px)/g);
+      // console.log("num");
       // pxをvwに変換
+      // この変換で半角空白が消えている
       const convertData = `${String(Number(num) * 100)}vw`;
       setConvertCss((inputData = inputData.replace(matchData, convertData)));
     });
