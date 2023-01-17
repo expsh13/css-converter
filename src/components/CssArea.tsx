@@ -1,24 +1,40 @@
+import { match } from "assert";
 import React, { useState } from "react";
 
 const CssArea: React.FC = () => {
+  // 出力のcss
   const [css, setCss] = useState("");
 
   // cssの取得
-  const getCss = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const inputTxt = e.target.value;
-    setCss(inputTxt.replace(/([0-9 .]+px)/gi, /([0-9 .]+vw)/g));
-    // console.log(css);
-    // setCss(() => e.target.value);
-  };
+  const getCss = (value: string): void => {
+    // 入力データ
+    const inputTxt = value;
+    // マッチパターン
+    // const pattern = /[0-9 .]+px*;/gi;
+    const pattern = /(?<=\s|:)[0-9 .]+px/gi;
+    // マッチcss
+    const matchDatas = inputTxt.match(pattern);
+    if (matchDatas == null) return;
+    // console.log(matchDatas);
 
-  const changeCss = (): string => {
-    return "a";
+    matchDatas.map((matchData) => {
+      const num = matchData.match(/[0-9 .](?=px)/g);
+      console.log(matchData);
+      console.log(num);
+      const matchDataNum = Number(num) * 100;
+      console.log(matchDataNum * 100);
+      // pxをvwに変換
+      // matchData = matchData.replace(
+      //   `${matchDataNum} px`,
+      //   `${Math.round(matchDataNum * 100)} vw`
+      // );
+      // setCss(inputTxt.replace(matchData, ""));
+    });
   };
 
   // クリップボードにコピー
   const copyTextToClipboard = async () => {
     if (css) {
-      console.log("koko");
       await navigator.clipboard.writeText(css);
     }
   };
@@ -27,9 +43,12 @@ const CssArea: React.FC = () => {
     <div>
       <textarea
         placeholder="CSSを入力してください。"
-        onChange={getCss}
+        onChange={(e) => getCss(e.target.value)}
       ></textarea>
-      <textarea name="output" id="" value={css}></textarea>
+      <textarea
+        defaultValue={css}
+        placeholder="ここに出力されます。"
+      ></textarea>
       <button onClick={() => copyTextToClipboard()}>コピー</button>
     </div>
   );
