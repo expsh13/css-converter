@@ -1,7 +1,11 @@
-import { match } from "assert";
 import React, { useState } from "react";
 
 const CssArea: React.FC = () => {
+  const getBase = (value: string): number => {
+    console.log(value);
+    return Number(value);
+  };
+
   // 出力のcss
   const [convertCss, setConvertCss] = useState("");
 
@@ -12,11 +16,13 @@ const CssArea: React.FC = () => {
     // console.log(inputData);
     setConvertCss(inputData);
     // マッチパターン
-    const pattern = /(?<=\s|:)[0-9.]+px/gi;
+    const pattern = /(?<=\s|calc\(|:)[0-9.]+px/gi;
     // マッチcss
     const matchDatas = inputData.match(pattern);
     console.log(matchDatas);
     if (matchDatas == null) return;
+
+    console.log("koko");
 
     matchDatas.map((matchData) => {
       const num = matchData.match(/[0-9.]+(?=px)/g);
@@ -47,6 +53,16 @@ const CssArea: React.FC = () => {
         placeholder="ここに出力されます。"
       ></textarea>
       <button onClick={() => copyTextToClipboard()}>コピー</button>
+      <input
+        type="text"
+        defaultValue={"375"}
+        onChange={(e) => getBase(e.target.value)}
+      />
+      <p className="">px</p>
+      <select name="example">
+        <option>vw</option>
+        <option>%</option>
+      </select>
     </div>
   );
 };
