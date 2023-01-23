@@ -1,0 +1,111 @@
+.converter {
+  background: #f7f7f7;
+  padding: 30px 30px 50px;
+  min-height: calc(100vh - 90px);
+}
+.converter__item {
+  background: #ffffff;
+  border: 1px solid #dae1e8;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+.converter__base {
+  display: flex;
+  margin: 25px 0 15px;
+  justify-content: center;
+  align-items: center;
+}
+.converter__base-txt {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 23px;
+}
+.converter__base-input {
+  border: 1px solid #dae1e8;
+  border-radius: 8px;
+  width: 50px;
+  text-align: center;
+  padding: 5px 0;
+  margin-right: 5px;
+}
+.converter__unit {
+  display: flex;
+  border-bottom: 1px solid #dae1e8;
+  padding-bottom: 15px;
+}
+.converter__unit-item {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.converter__unit-item-input {
+  border: 1px solid #dae1e8;
+  border-radius: 8px;
+  width: 50px;
+  text-align: center;
+  padding: 5px 0;
+}
+.converter__css {
+  display: flex;
+  justify-content: space-between;
+}
+.converter__css-item {
+  width: 50%;
+  position: relative;
+  padding: 38px 33px 20px;
+}
+.converter__css-item:first-child::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  content: "";
+  display: block;
+  width: 1px;
+  height: 100%;
+  background-color: #dae1e8;
+}
+.converter__css-item:focus {
+  background-color: red;
+}
+.converter__css-area {
+  width: 100%;
+  height: 250px;
+  padding: 0;
+  border: none;
+  resize: none;
+}
+.converter__css-area:focus-visible {
+  outline: none;
+}
+.converter__css-icon-wrap {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+.converter__css-copy {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+  background: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  width: 45px;
+}
+.converter__css-copy:hover {
+  cursor: pointer;
+  background-color: #f5f5f5;
+}
+.converter__css-copy:active {
+  background-color: #04040438;
+}
+.converter__css-copy svg {
+  width: 25px;
+  height: auto;
+  color: #0f0e0e94;
+}
