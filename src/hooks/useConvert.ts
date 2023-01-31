@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { convertToObject } from "typescript";
 
 export const useConvert = () => {
   // 入力データ

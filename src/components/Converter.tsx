@@ -9,6 +9,20 @@ const Converter = () => {
 
   const copyText = useCopyText;
 
+  const inputPlace = `ここにCSSを入力してください。
+  @media (min-width: 769px) {
+    .example {
+      padding: 40px 60px;
+    }
+  }`;
+
+  const outputPlace = `ここにCSSが出力されます。
+  @media (min-width: 769px) {
+    .example {
+      padding: 3.2vw 16vw;
+    }
+  }`;
+
   return (
     <div className="converter">
       <div className="converter__item">
@@ -22,35 +36,33 @@ const Converter = () => {
           />
           <p className="converter__base-txt">px</p>
         </div>
-        <div className="converter__unit">
-          <div className="converter__unit-item">
-            <p className="converter__unit-item-txt">変換単位：px</p>
-          </div>
-          <div className="converter__unit-item">
-            <p className="converter__unit-item-txt">変換後単位：</p>
-            <select
-              className="converter__unit-item-input"
-              onChange={(e) => getUnit(e.target.value)}
-            >
-              <option value={"vw"}>vw</option>
-              <option value={"%"}>%</option>
-            </select>
-          </div>
-        </div>
         <div className="converter__css">
           <div className="converter__css-item">
+            <div className="converter__css-unit">
+              <p className="converter__css-unit-txt">変換単位：px</p>
+            </div>
             <textarea
               className="converter__css-area converter__css-area--input"
-              placeholder="CSSを入力してください。"
+              placeholder={inputPlace}
               onChange={(e) => getCss(e.target.value)}
             ></textarea>
           </div>
           <div className="converter__css-item">
+            <div className="converter__css-unit">
+              <p className="converter__css-unit-txt">変換後単位：</p>
+              <select
+                className="converter__css-unit-input"
+                onChange={(e) => getUnit(e.target.value)}
+              >
+                <option value={"vw"}>vw</option>
+                <option value={"%"}>%</option>
+              </select>
+            </div>
             <textarea
               className="converter__css-area"
               readOnly={true}
               defaultValue={convertCss}
-              placeholder="ここに出力されます。"
+              placeholder={outputPlace}
             ></textarea>
             <div className="converter__css-icon-wrap">
               <button
