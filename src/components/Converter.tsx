@@ -4,7 +4,6 @@ import "./Converter.css";
 import { MdContentCopy } from "react-icons/md";
 
 const Converter = () => {
-  // 最初に実行されると空になる
   const { getCss, getBase, getUnit, convertCss } = useConvert();
 
   const copyText = useCopyText;
