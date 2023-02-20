@@ -25,13 +25,13 @@ export const useConvert = () => {
 
   useEffect(() => {
     // マッチパターン
-    const pattern = /(?<=\s|calc\(|:)[0-9.]+px(?=.*;)/gi;
+    const pattern = /(?<=\s|calc\(|:)-*[0-9.]+px(?=.*;)/gi;
     // マッチcss
     let inputData = inputCss;
     const matchDatas = inputData.match(pattern);
 
     matchDatas?.map((matchData) => {
-      const num = matchData.match(/[0-9.]+(?=px)/g);
+      const num = matchData.match(/-*[0-9.]+(?=px)/g);
       // pxをvwに変換
       const convertData = `${String(
         Number(((Number(num) / inputBase) * 100).toFixed(4))
